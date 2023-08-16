@@ -28,7 +28,8 @@ until [ $i -gt $TOTALPAGES ]
 do
   result=`curl -s -u $USERNAME:$TOKEN -H 'Accept: application/vnd.github.v3+json' ${BASEURL}?per_page=${PERPAGE}\&page=${i} 2>&1`
   echo $result > temp/tempfile
-  cat temp/tempfile|jq '.[]| [.name, .ssh_url, .clone_url]| @csv' |tr -d '\\"' 
   ((i=$i+1))
 done
 
+cat temp/tempfile|jq '.[]| [.name, .ssh_url, .clone_url]| @csv' |tr -d '\\' |tr -d '"' >temp/gh_list.csv 
+rm temp/tempfile
