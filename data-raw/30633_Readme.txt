@@ -1,1 +1,0 @@
-Curran.zip contains the data files for Financial Characteristics of Cities in the United States, 1905-1930. Data is in Stata, SPSS and ASCII format.  Do and dictionary files for Stata and SPSS statements are included. Stata and SPSS data files and statement files were created by DISC staff in the summer of 2018.

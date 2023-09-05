@@ -25,20 +25,14 @@ def clone(repo_url: str):
     subprocess.run(["git clone " + repo_url], shell=True)
 
 
-def move_readme(file: str, ms_num: str, target_folder):
+def move_readmes(files: str, ms_num: str, target_folder):
     """
     Reach readme file and move it to the output.
     """
-    if len(file) == 1:
-        file = str(file[0])
-        cmd = [f"cp {file} {target_folder}/{ms_num}.{file.split('.')[-1]}"]
+    (target_folder / ms_num).mkdir(exist_ok=True)
+    for f in files:
+        cmd = [f'cp "{f}" "{target_folder / ms_num}/"']
         subprocess.run(cmd, shell=True)
-    else:
-        i = 0
-        for f in file:
-            i += 1
-            cmd = [f"cp {f} {target_folder}/{ms_num}_{f.split('/')[-1]}"]
-            subprocess.run(cmd, shell=True)
 
 
 def list_files(repo: str) -> list[str]:
@@ -55,7 +49,7 @@ def list_files(repo: str) -> list[str]:
     return filelist
 
 
-def find_readme(repo: str) -> list[str]:
+def find_readmes(repo: str) -> list[str]:
     """
     Looks into the given repository and extracts the readme file name.
     """
@@ -90,14 +84,16 @@ def main(infile, outfolder):
     with open(infile, 'rt') as csvfile:
         reader = csv.reader(csvfile)
         for repo in tqdm(reader):
-            if any([repo[0] in fname for fname in loaded_list]):
+            MS_num = repo[0]
+            git_url = repo[1]
+            if any([MS_num in fname for fname in loaded_list]):
                 rowcount -= 1
                 continue
             # # git pull all the remote origin updates from all branches
-            clone(repo[1])
+            clone(git_url)
             # # git log all (for initial log) & then update it with --after=<date> (from a specified date - you can automate/schedule it) + log report temp answers
-            file = find_readme(repo[0])
-            move_readme(file, repo[0], outfolder)
+            file = find_readmes(MS_num)
+            move_readmes(file, MS_num, outfolder)
             # # no need to clean up, as the temp folder will be deleted
             # To track the list of remaining repos from your list
             rowcount -= 1
