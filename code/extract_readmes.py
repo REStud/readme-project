@@ -48,21 +48,23 @@ def list_files(repo: str) -> list[str]:
 
     return filelist
 
+def is_readme(file: str) -> bool:
+    """
+    Checks if the file is a README file. 
+    
+    The string 'read' should be in the name of the file and the extension should be .md, .txt, .tex, .doc, .docx or .pdf
+    """
+    file = file.lower()
+    if "read" in file:
+        if file.endswith(".md") or file.endswith(".txt") or file.endswith(".tex") or file.endswith(".doc") or file.endswith(".docx") or file.endswith(".pdf"):
+            return True
+    return False
 
 def find_readmes(repo: str) -> list[str]:
     """
     Looks into the given repository and extracts the readme file name.
     """
-    filelist = list_files(repo)
-    lowerlist = [f.split("/")[-1].lower() for f in filelist]
-    r = re.compile("read")
-    readmelist = list(filter(r.match, lowerlist))
-    readme_names = []
-    for ind, v in enumerate(lowerlist):
-        if v in readmelist:
-            readme_names.append(filelist[ind])
-
-    return readme_names
+    return [fname for fname in list_files(repo) if is_readme(fname)]
 
 
 def countrow(path: str) -> int:
