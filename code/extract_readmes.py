@@ -78,10 +78,7 @@ def countrow(path: str) -> int:
     Input: path as a string
     Output: number of rows
     """
-    rowcount = 0
-    for row in open(path, "r"):
-        rowcount += 1
-    return rowcount
+    return len(open(path, 'rt').readlines())
 
 
 def main(infile, outfolder):
@@ -89,13 +86,11 @@ def main(infile, outfolder):
     rowcount = countrow(infile)
     # iterating through the whole file
     loaded_list = os.listdir(outfolder)
-    if loaded_list != []:
-        loaded_list = [readme.split(".")[0] for readme in loaded_list]
 
-    with open(infile, "r") as csvfile:
+    with open(infile, 'rt') as csvfile:
         reader = csv.reader(csvfile)
         for repo in tqdm(reader):
-            if repo[0] in loaded_list:
+            if any([repo[0] in fname for fname in loaded_list]):
                 rowcount -= 1
                 continue
             # # git pull all the remote origin updates from all branches
@@ -103,10 +98,7 @@ def main(infile, outfolder):
             # # git log all (for initial log) & then update it with --after=<date> (from a specified date - you can automate/schedule it) + log report temp answers
             file = find_readme(repo[0])
             move_readme(file, repo[0], outfolder)
-            # # clen up after copying the readmefile.
-            cmd_clr = ["rm -rf " + repo[0]]
-            subprocess.run(cmd_clr, shell=True)
-
+            # # no need to clean up, as the temp folder will be deleted
             # To track the list of remaining repos from your list
             rowcount -= 1
 
