@@ -1,0 +1,250 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath, amsfonts,amssymb, lscape}
+\usepackage{verbatim, amsthm, graphics, newcent}
+\usepackage{epsfig,graphicx,mathrsfs,pgf,  multirow, booktabs}
+%\RequirePackage{doi}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{morefloats}
+
+%\bibliographystyle{apsr}
+\bibliographystyle{apa}
+%the chicago and APA styles do not produce URL in the references section, whereas any of the harvard styles (apsr, dcu) does
+
+\begin{document}
+
+
+This document describes all the programs and data sources that one would need to replicate the empirical analysis in Blundell, Green and Jin (2021).
+
+Most of the raw data can be downloaded from the internet, sometimes after online registration. Section 1 describes all the data sources. All the analysis was done in STATA. All the do-files are provided. Section \ref{outputs} lists all the outputs (tables, figures, numbers in text) and where each was produced. Section \ref{steps} describes the empirical work step by step.
+
+\section{Data Availability Statements}
+1.	UK Labour Force Survey  (End-User-License) 
+
+Most analysis of UK data in this paper is based on the End-User-License version of the LFS 1993Q1-2016QQ4. "End-User-License" means they can be freely downloaded from UK Data Service for any academic user who register and agree to their conditions. You can find them all at this link \url{https://beta.ukdataservice.ac.uk/datacatalogue/series/series?id=2000026#!/access-data}, from 1975 to 2020 in fact. At that link, you can download the datasets quarter by quarter within "GN 33246" (from 1992Q2) and annually within "GN 33132" (before 1992). Because there are more than 100 individual datasets within these two groups, I will not cite them individually here. As an example, the citiation for 2014Q2 LFS is listed in the references \cite{lfs2014}.\\
+
+2.	UK General Household Survey (GHS) 1972-1991 
+The GHS is also downloadable from the UK data service (End-User-License). You can find all the datasets (year by year) within "GN 33090" at this link: \url{https://beta.ukdataservice.ac.uk/datacatalogue/series/series?id=200019#!/access-data}.
+Each year of GHS has a study number. For example, for 1972., the citation is: \cite{ghs1972}.
+\\
+
+3.	US Current Population Survey Outgoing Rotation Group samples
+
+We have downloaded the MORG annual data from \url{https://data.nber.org/morg/annual/}, from 1979 to 2017.\\
+
+4.	Workplace Employment Relations Survey (WERS): 1998-2011: Secure Access
+
+We access this data through the UK Data Service's Secure Lab. One has to submit an application describing the research project, how the secure data will be used, and why the EUL version of the data isn't sufficient. When using this data, any output or file can only be released after they are checked by the staff. The citation for this study is: \cite{wers}.\\
+
+5. 	Quarterly Labour Force Survey, 1992-2018: Secure Access
+
+We access this data through the UK Data Service's Secure Lab. The application process and restrictions are the same as for the WERS data above. The citation for this study is: \cite{qlfssa}.\\
+
+6. Cross-country statistics on graduate proportions and wage premiums, from Table A1.4 and Table A8.2a in Education at a Glance: OECD Indicators, 2012. \cite{oecd1}, \cite{oecd2}. The tables can be downloaded from \url{https://www.oecd-ilibrary.org/education/education-at-a-glance-2012/trends-in-educational-attainment-25-64-year-olds-1997-2010_eag-2012-table9-en} and \url{https://www.oecd-ilibrary.org/education/education-at-a-glance-2012/trends-in-relative-earnings-total-population-2000-10_eag-2012-table75-en}. We save the relevant statistics in ednedif.dta, which is provided in the replication package.\\
+
+7. Lee-Lee Data Set on Long-term Educational Attainment by Country, \cite{lee2016}. We download the dataset covering 1870-2010 acorss 89 countries, from \url{https://barrolee.github.io/BarroLeeDataSet/OUPdownload.html}\\
+
+8. HESA
+	In section B.4 in the paper, we compare the BA proportions measured from the LFS with that from the Higher Education Student Statistics (HESA). The latter stats can be downloaded from this link: \url{https://www.hesa.ac.uk/data-and-analysis/publications}.  There are dozens of tables for each academic year, and excel table ‘HESA stats summary’ puts together all the relevant numbers.\\
+
+9. deflator from OECD statistics 
+The excel file "GDP, nominal, real and deflator,  UK and US, 2018July edition" contain the time series of real and nominal GDP downloaded from OECDstat, at this link \url{https://stats.oecd.org/Index.aspx?DatasetCode=SNA_TABLE1}\\
+
+\section{Outputs}
+\label{outputs}
+ Table \ref{tab:figures} lists all the figures, which do-file created them, and their file name.  Table \ref{tab:tables} does the same for all tables in the paper. Table \ref{tab:text} does the same for all other numbers quoted in text.
+
+\begin{table}[h]
+\centering
+\caption{List of all figures and programs that generated each}
+\label{tab:figures}
+\begin{tabular}{l l l}
+\hline
+Output in paper & Programme generating it & Filename or number in text\\
+\hline
+Figure 1 &'over year figures.do' &\texttt{propBA\_year\_GHS\_LFS\_US.png}\\
+\hline
+Figure 2 &'over year figures.do' &\texttt{lnmedratio\_year\_UK.png}\\
+\hline
+Figure 3 &'over year figures.do' & \texttt{BAprop\_year\_by\_sex.png} and \\
+&&\texttt{lnmedratio\_year\_by\_sex.png} \\
+\hline
+Figure 4 &'SBTC analysis.do' &\texttt{regionalvariation\_Dwage\_DlnSUgjt\_30.png} \\
+\hline
+Figure 5 & 'UK occupations.do'& \texttt{BA\_year\_managers\_30\_34} and\\
+&& \texttt{manager\_year\_BA\_30\_34.png} \\
+\hline
+\hline
+\multicolumn{3}{c}{Output in the online appendix}\\
+\hline
+Figure 1  &'SBTC analysis.do' &\texttt{lnthetaratio.png} and\\
+&& \texttt{lntheta\_ut.png}  \\
+\hline
+Figure 2 &'over year figures.do' &\texttt{wratio\_year\_HSdefine.png} and\\
+&&\texttt{lnmedratio\_year\_UK\_1718.png} \\
+\hline
+Figure 3 & 'compare HESA and LFS.do'& \texttt{HESA\_LFS\_compare.png}\\
+\hline
+Figure 4 & 'cohort figures.do’ &\texttt{mediangapbycohort.png}\\
+&& \texttt{cohorteffect\_prop.png}\\
+\hline
+Figure 5 & 'cohort figures.do’ & \texttt{cohorteffect\_percentiles.png} and \\
+&& \texttt{cohorteffect\_lowerend.png} \\
+\hline
+Figure 6 &'over year figures.do' &  \texttt{PGprop\_year.png} \\
+\hline
+Figure 7 &'over year figures.do' &  \texttt{BA\_UKnational.png} and\\
+&& \texttt{lnmedratio\_year\_UKnational.png}\\
+\hline
+Figure 8 &'over year figures.do' &  \texttt{lnmedratio\_year\_private.png}\\
+\hline
+Figure 9 &'over year figures.do' &  \texttt{yeareffect\_emprate.png} \\
+\hline
+Figure 10 & 'cohort figures.do’ & \texttt{adjratio\_cohort1965.png} and\\
+&& \texttt{adjratio\_\_coef.png}\\
+\hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[h]
+\centering
+\caption{List of all tables and programs that generated each}
+\label{tab:tables}
+\begin{tabular}{l l l}
+\hline
+number in paper & Programme generating it & Filename\\
+\hline
+Table 1 & ‘SBTC analysis.do’ &\texttt{OLSreg\_region\_format.tex}\\
+\hline
+Table 2 & ‘UK occupations.do’& \texttt{OCC00\_30\_19932016.tex}\\
+\hline
+Table 3,4,5 & `WERS-LFS analysis at workplace level.do' & no tex or Excel files*\\
+Table 6 & `WERS-LFS analysis at TTWA level.do' & no tex or Excel files*\\
+\hline
+Table 7 & ‘SBTC analysis.do’ &\texttt{IVreg\_b45\_1ststage.tex }\\
+\hline
+Table 1 in online appendix & ‘SBTC analysis.do’ &\texttt{IVreg\_cons\_region.tex}\\
+Table 2 in online appendix & ‘SBTC analysis.do’ &\texttt{IVreg\_cons\_region.tex}\\
+\hline
+\end{tabular}
+*Note: results in tables 3-6 were generated in the Secure Lab. We are not allowed to take excel files out, only results in a written-up format.
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{List of all numbers in text and programs that generated each}
+\label{tab:text}
+\begin{tabular}{l l l}
+\hline
+number in text& position in paper & Programme generating it \\
+\hline
+$11\%$ & end of page 1 &'deflate data.do' line 50\\
+\hline
+$0.13$& page 8 &'over year figures.do' line 188\\
+\hline
+$25\%$ &page 12& 'over year figures.do'  line 250\\
+\hline
+0.16,0.34&page 14 &'cohort figures.do' line 382\\
+\hline
+0.05, -0.15&page 14 &'cohort figures.do' line 364\\
+\hline
+1.1, 1.5, $10\%$,0.15 &page21&'SBTC analysis.do' line 307\\
+\hline
+$22\%$,$18\%$,$15\%$, &page 28 and footnote17&'crosscountry stats.do' line 137\\
+\hline
+$12\%$,$24\%$,$16\%$,$27\%$,$34\%$,$32\%$&page 28&'cohort figures.do' line 380-410\\
+\hline
+.007, -.033,-.16,-.12 &page 37&'SBTC analysis.do' line 867\\
+\hline
+$25\%$,$50\%$,$23\%$,$19\%$&page 38, simply &'UK occupations.do' line 282-314\\
+&describing Figure 5&\\
+\hline
+1.8 &page 47&'crosscountry stats.do' line 108\\
+\hline
+1.5 &page 48&'crosscountry stats.do' line 28\\
+\hline
+\hline
+\multicolumn{3}{c}{Output in the online appendix}\\
+\hline
+-.16,0.10&page 4&'SBTC analysis.do' line 867 \\
+\hline
+2 log points, 5 log points& page 6&'SBTC analysis.do' line902,927\\
+\hline
+0.07 &page 12&'cohort figures.do' line 97\\
+\hline
+under $5\%$, above $10\%$ & page14&'over year figures.do' line427\\
+\hline
+$0.03$ & page 17&'over year figures.do' line259\\
+\hline
+$4\%$,$15\%$& page 24, oline appendix .&'cohort figures.do' line 364\\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Instruction for replication, step by step}
+\label{steps}
+
+All analysis is conducted in STATA. I have used STATA packages listtex, outreg2 and estimates. They are installed from the net. Fior example, just type 'help listtex' in the STATA command window, if you haven't installed it, the help window will show a link which allows you to install it.
+This section describes all the do-files necessary to reproduce all the outputs in the paper. There are 4 steps to be carried out in order. Within each step, there are multiple do-files.
+
+\subsection{Step 1, setting up the data and summary statistics}
+\begin{itemize}
+\item 'set up LFS rawdata.do' extracts key variables from the quartely LFS. You only need to change the path \texttt{\$RawData} to where you download the EUL versions of LFS data near the start of the do-file.
+\item 'set up GHS.do' extracts key variables from the GHS year by year and save the microdata as 'GHS7291.dta'. You should change the path \texttt{\$GHS} to where you download the EUL versions of LFS data. The path \texttt{\$BGJ} is the project folder, containing several subfolders where intermediate datasets and outputs are saved. Other do-files will refer to folders relative to \texttt{\$BGJ} .
+\item 'deflate data.do' imports GDP deflators from the OECDstats, and save deflated microdata as \texttt{'GDPdeflated\_all.dta'}, one for the US and one for the UK.
+\item 'UK time sreies from GHS and LFS' summarizes the LFS and GHS to create a small STATA file \texttt{‘propBA\_year\_GHS\_LFS.dta’}, which will be used later to produce Figure 1. 
+\end{itemize}
+
+\subsection{Step 2, descriptive analysis}
+ 
+There are a few do-files, each implements some descriptive analysis and produces some figure or tables. Here I describe the content do-file by do-file, and within each do-file I'll describe what it does in the order that appears in the do-file.
+
+\begin{itemize}
+\item	'over year figures.do' first defines a couple of programs to aggregate data and to estimate year effects in the aggregated data. It  summarizes UK LFS to create a small STATA file \texttt{UK\_by\_age\_EDU\_year16.dta} and summarizes US microdata to create a small STATA file \texttt{US\_by\_age\_EDU\_year.dta}. Using  \texttt{UK\_by\_age\_EDU\_year16.dta}, this do-file makes figure 2 (\texttt{lnmedratio\_year\_UK.png}. This do-file also merges  \texttt{‘propBA\_year\_GHS\_LFS.dta’} and  \texttt{US\_by\_age\_EDU\_year.dta} in order to plot all the UK and US time series in figure 1 (\texttt{propBA\_year\_GHS\_LFS\_US.png}).
+\item  to demonstrate the robustness of the stylized facts for the UK, we have tried various subsamples and alternative definitions of variables to produce the trends akin to figures 1-2. This is all done in 'over yer figures.do'. 
+\begin{itemize}
+\item we plot the trends separately by gender in \texttt{BAprop\_year\_by\_sex.png} and \texttt{lnmedratio\_year\_by\_sex.png} (Figure 3);
+\item we exclude the public sector to produce \texttt{lnmedratio\_year\_private.png} (Figure 8 in online appendix) 
+\item we exclude postgrades, to produce \texttt{PGprop\_year.png} (Figure 6 in online appendix) 
+\item We define the High-School group as A-Levels+ instead of GCSE+, to produce \texttt{wratio\_year\_HSdefine.png} (left graph in Figure 2 in online appendix)
+\item We classify education by age left full-time education rather than the qualifications obtained, to produce \texttt{lnmedratio\_year\_UK\_1718.png} (right graph in Figure 2 in online appendix).
+\item we exclude immigrants to produce \texttt{BA\_UKnational.png} and \texttt{lnmedratio\_year\_UKnational.png} (Figure 7 in online appendix) 
+\end{itemize}
+\item finally, ‘over year figures.do’ computes year effects in employment rate from \texttt{UK\_by\_age\_EDU\_year16.dta} and exports the graph as \texttt{yeareffect\_emprate.png} (Figure 9 in online appendix)
+\\
+\item ‘UK occupations.do’ adjusts LFS data so that the occupation classification is consistent over time, then computes the occupational statistics in \texttt{OCC00\_30\_19932016.tex} (table 2 in the paper).  ‘UK occupations.do’ also computes time series of the share of managers in graduates and the share of graduate in managers, which are \texttt{BA\_year\_managers\_30\_34} and \texttt{manager\_year\_BA\_30\_34.png} (Figure 5).
+\item 'compare HESA and LFS.do' computes times series from editted LFS microdata\footnote{the LFS data was editted in Step 1 by 'set up LFS rawdata.do'}, merges in the HESA stats from the excel file, and produces \texttt{HESA\_LFS\_compare.png} (Figure 3 in online appendix)
+\item 'crosscountry stats.do' examines the time series on graduate proportion and wage premium across some OECD countries. It runs simple regressions to get the time trends for each country, and the results are reported in table 2 in the online appendix section10. Some estimates are described in text in section 10 in the online appendix as well.
+\item 'cohort figures.do’ summarizes UK LFS by birth cohort and age, computes the cohort effects and saves the data points in a small STATA file \texttt{UK\_by\_cohort\_plot}. Then the do-file produces ‘mediangapbycohort.png’ and \texttt{cohorteffect\_prop.png} (Figure 4 in online appendix), and \texttt{cohorteffect\_percentiles.png} and \texttt{cohorteffect\_lowerend.png} (Figure 5 in online appendix). ‘cohort figures.do’ also conducts a bounding exercise to adjust the wage distribution using the 1965 cohort as the reference point. The adjusted statistics are saved as \texttt{adjmed\_cohort1965.dta}. The program then produces graphs \texttt{adjratio\_cohort1965.png} and \texttt{adjratio\_\_coef.png} (Figure 10 in online appendix). Finally, it computes the BA proportions for the 1965 and 1975 cohorts, for both the UK and the US, which are discussed in text on page 28, around footnote 19.
+
+\end{itemize}
+
+\subsection{Step 3, checking the Skill-Biased Technical Change hypothesis}
+	In ‘SBTC analysis.do’ has 6 sections, clearly labeled in the do-file.
+\begin{enumerate}
+\item We summarize UK LFS to the level of year and 5-year age band,  compute the relevant variables such as log skill ratios and log wage ratios, and merge in macroeconoimc variables such as TFP, and save the resulting data as  \texttt{toregress\_TFP\_age.dta}
+\item We do the same at the level of region, 5-year-age-band and 3-year-period, and save the stats as \texttt{toregress\_region.dta} 
+\item Using \texttt{toregress\_region.dta} , we compute long difference in wages and skill ratios and plot them in \texttt{regionalvariation\_Dwage\_DlnSUgjt\_30.png} (Figure 4)
+\item We construct instrumental variables for $\ln S_{gt}/U_{gt}$ and $ \ln S_{gjt}/ \ln U_{gjt}$. 
+\item We run all the regressions reported in tables 1,7 in the paper and table 1 in online appendix.
+\item We test some inequality restrictions predicted by the framework. The results are saved in 'Inequality constraints.xls' and discussed in text in section 2 in online appendix. Some of the estimates for the determinant of the Hessian of the production function are also mentioned in text on page 37. All the numbers that are mentioned in the paper have been highlighted yellow in  'Inequality constraints.xls'.
+\item We do a calibration exercise at the year-ageband level. Starting with \texttt{toregress\_TFP\_age.dta}, we assume some parameters to calculate the implied thetas, and plots the ratios and one time series as \texttt{lnthetaratio.png} and \texttt{lntheta\_ut.png} (Figure 1 in online appendix)
+\end{enumerate}
+
+\subsection{Step 4, analysis of workers' autonomy}
+The following do-files need to be imported into the Secure Lab in order to run on Secure Access datasets. To comply with data security, the do-files do not contain folder paths within the secure lab. But the do-files are self-explanatory enough that the reader should know which datasets are used.
+
+\begin{itemize}
+\item 'set up WERS data.do' selects and edits relevant variables from the raw WERS data.
+\item 'compute influence index.do' uses a range of influence variables to establish one index of worker's influence.
+\item 'set up LFS data.do' extracts relevant variables from LFS, aggregate it to TTWA level and construct instrumental variables from 1992-93 data.
+\item 'WERS-LFS analysis at workplace level.do'  merges LFS area information into workplace-level WERS data. It summarizes the data to produce statistics in table 3, and runs regressions that are reported in tables 4 and 5.
+\item 'WERS-LFS analysis at TTWA level.do' merges LFS and WERS at the TTWA level, and runs regressions that are reported in table 6. 
+\end{itemize}
+
+
+\bibliography{referencescollection}
+
+\end{document}

@@ -1,0 +1,313 @@
+\documentclass[a4paper,11pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage[left=2cm,right=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[official]{eurosym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{boldline}
+\usepackage{amsthm}
+\usepackage{dsfont}
+\usepackage{verbatim}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{dcolumn}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage[nohyphen]{underscore}
+
+\hypersetup{breaklinks=true, pagecolor=white, colorlinks=true, citecolor=black, linkcolor=black, urlcolor=blue}
+\urlstyle{rm}
+
+\author{Mark Schankerman \and Florian Schuett}
+\title{README \\ Replication Package for ``Patent Screening, Innovation, and Welfare'' \\ (\emph{The Review of Economic Studies}, forthcoming)}
+\date{October 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Overview}
+
+This replication package contains the data and code required to reproduce all the tables, figures, and other numbers reported in the paper (including in online appendices). In addition, it contains instructions on how to access and clean the raw data.
+
+\section{Data availability and provenance statements} \label{sec:DAS}
+
+We collected data from a variety of sources, described below. All the data are publicly available. This section describes how to access the documents and raw data used to construct the datafiles needed to run the programs.
+
+\subsection{Data collected from public documents}
+
+\begin{enumerate}[(1)]
+\item \label{s:fees} Data on patent office fees in 2005, 2010, and 2015 were collected from the Office of the Federal Register, Code of Federal Regulations, Title 37: Patents, Trademarks, and Copyright. The source documents can be downloaded from:
+\begin{description}
+  \item[2005:] \url{https://www.govinfo.gov/content/pkg/CFR-2005-title37-vol1/pdf/CFR-2005-title37-vol1.pdf}
+  \item[2010:] \url{https://www.govinfo.gov/content/pkg/CFR-2010-title37-vol1/pdf/CFR-2010-title37-vol1.pdf}
+  \item[2015:] \url{https://www.govinfo.gov/content/pkg/CFR-2015-title37-vol1/pdf/CFR-2015-title37-vol1.pdf}
+\end{description}
+
+\item \label{s:budget} Data on the cost of operating the patent program in 2005, 2010, and 2015 were collected from the U.S.~Patent and Trademark Office (USPTO). The source documents are the USPTO's Performance and Accountability Reports, which can be downloaded from:
+\begin{description}
+  \item[2005:] \url{https://www.uspto.gov/sites/default/files/about/stratplan/ar/USPTOFY2005PAR.pdf} (p.~65)
+  \item[2010:] \url{https://www.uspto.gov/sites/default/files/about/stratplan/ar/USPTOFY2010PAR.pdf} (p.~57)
+  \item[2015:] \url{https://www.uspto.gov/sites/default/files/documents/USPTOFY15PAR.pdf} (p.~38)
+\end{description}
+
+\item \label{s:exsal} Data on the average salary of examiners and the number of examiners employed at the USPTO in 2005, 2010, and 2015 were obtained from FederalPay.org, a non-governmental information portal built by federal employees. The information can be obtained by accessing \url{https://www.federalpay.org/employees/occupations/patent-examining/} and selecting the relevant year.
+
+\item \label{s:fc} Data on patent grants broken down by industry were collected from the USPTO's report on ``U.S.~Patenting Trends by NAICS Industry Category.'' Two sets of data were compiled:
+\begin{enumerate}[(a)]
+  \item patent grants by year of grant, total (any ownership category); source documents available at \url{https://www.uspto.gov/web/offices/ac/ido/oeip/taf/naics/naics_own_fgall/naics_own_fg.htm}
+  \item patent grants by year of application assigned to U.S.~corporations; source documents available at \url{https://www.uspto.gov/web/offices/ac/ido/oeip/taf/naics/naics_own_faall/naics_own_fa.htm}
+\end{enumerate}
+
+\item \label{s:aipla} Data on the costs of patent litigation were collected from the 2005, 2011, and 2017 editions of the American Intellectual Property Law Association's ``Report of the Economic Survey'' (AIPLA, \citeyear{AIPLA05}; AIPLA, \citeyear{AIPLA11}; AIPLA, \citeyear{AIPLA17}).
+
+\item \label{s:propensity} Data on patent propensity by industry were compiled from \citet{CoNW00}. Based on an extensive survey, \citet{CoNW00} report the sector-specific percentage of innovations for which firms seek patent protection, distinguishing between process and product innovations. In addition, data on the percentage of R\&D time spent on each type of innovation were compiled from \citet{ArK98}.
+
+\item \label{s:mansfield} Data on the percentage of innovations that firms in 12 different industries claim would not have been developed without patent protection were collected from \citet{Ma86}.
+\end{enumerate}
+
+
+\subsection{Datasets obtained from public sources}
+
+\begin{enumerate}[(1)] \setcounter{enumi}{7}
+\item \label{s:ces} Data on value of shipments, inventories, wage bill, intermediate materials, capital stock, relevant deflators, and TFP growth at the 6-digit NAICS level are from the NBER-CES Manufacturing Industry Database 1958-2011 \citep{BeGM16}. The data can be downloaded from \url{https://www.nber.org/nberces/nberces5811/naics5811.csv}. %A copy of the data is provided as part of this archive.
+
+\item \label{s:cap} Data on capital rental prices, capital stock, and price deflators at 3-digit NAICS level were obtained from the Bureau of Labor Statistics (BLS). The data can be downloaded from \url{https://www.bls.gov/mfp/special\_requests/capbymeasure.xlsx}. Table 2.1 has capital rental prices, Table 4.1 has productive capital stock, and Table 8.1 has price deflators.
+
+\item \label{s:conc} Data on industry concentration (Herfindahl index and the share of the value of shipments accounted for by the 50 largest firms) were obtained from the Census Bureau. The data can be downloaded from \url{https://www.census.gov/content/dam/Census/programs-surveys/economic-census/data/archived_tables/2007/sector31/2007_31-33_Con_Ratios_US.zip}.
+
+\item \label{s:cumonth} Monthly data on capacity utilization at the 3-digit NAICS level were obtained from the Federal Reserve. The data can be downloaded from \url{https://www.federalreserve.gov/releases/g17/ipdisk/utl_sa.txt}.
+
+\item \label{s:cu} Yearly data on capacity utilization in manufacturing were obtained from the St.~Louis Federal Reserve. The data can be downloaded from \url{https://fred.stlouisfed.org/series/CUMFN}; click on ``download'' and select preferred format.
+
+\item \label{s:tfp} Data on total factor productivity at the 3-digit and 4-digit NAICS level were obtained from the BLS. The data can be downloaded from \url{https://www.bls.gov/mfp/mfp_by_industry_and_measure.xlsx} (4-digit NAICS level) and \url{https://www.bls.gov/mfp/special_requests/klemsmfp.xlsx} (3-digit NAICS level).
+
+\item \label{s:rd} Data on company and other nonfederally funded R\&D in manufacturing at the 3-digit NAICS level from 1999 to 2004 were obtained from the National Science Foundation (NSF). The data can be downloaded from \url{https://wayback.archive-it.org/5902/20160210163552/http://www.nsf.gov/statistics/nsf07314/tables/tab12.xls} (1999-2003), \url{https://wayback.archive-it.org/5902/20160210163454/http://www.nsf.gov/statistics/nsf09301/tables/tab10.xls} (2004), and \url{https://wayback.archive-it.org/5902/20160211030857/http://www.nsf.gov/statistics/nsf09301/tables/tab25.xls} (1953-2004 R\&D spending in current and constant 2000 dollars).
+
+\item \label{s:corrpto} Information on the correspondence between industry categories and technology classes was obtained from the USPTO. The download links are:
+\begin{enumerate}[(a)]
+  \item Correspondence between NAICS code and sequence number (one to one): \url{https://www.uspto.gov/web/offices/ac/ido/oeip/taf/data/naics_conc/2014/read_me.txt}
+  \item Correspondence between sequence number and technology class (one to many): \url{https://www.uspto.gov/web/offices/ac/ido/oeip/taf/data/naics_conc/2014/naics_co14.csv}
+\end{enumerate}
+
+\item \label{s:corrnber} Information on the correspondence between technology classes and technology fields was obtained from the National Bureau of Economic Research. They can be downloaded from \url{https://data.nber.org/patents/class_match.txt}.
+
+\item \label{s:int} Data on the real interest rate were obtained from the World Bank. They can be downloaded from \url{https://data.worldbank.org/indicator/FR.INR.RINR?locations=US}; select preferred format under ``Download.''
+
+\item \label{s:nberpat} Detailed patent data covering the period from 1976 to 2006 were obtained from the NBER Patent Data Project. They can be downloaded from \url{http://www.nber.org/~jbessen/pat76_06_assg.dta.zip}.
+
+\item \label{s:pa2011} Statistics on patent applications by industry in 2011 were obtained from the NSF. The data can be downloaded from \url{https://www.nsf.gov/statistics/2015/nsf15307/tables/tab38.xlsx}.
+
+\item \label{s:ptoapps} Statistics on patent applications from 1963 to 2020 were obtained from the USPTO. The data can be downloaded from \url{https://www.uspto.gov/web/offices/ac/ido/oeip/taf/us_stat.htm}.
+
+\item \label{s:gdpdeflator} Data on GDP deflators were obtained from the St.~Louis Federal Reserve. They can be downloaded from \url{https://fred.stlouisfed.org/series/GDPDEF}; click on ``download'' and select preferred format.
+
+\item \label{s:bea} Data on royalties and license fees in international transactions in 2008 were obtained from the Bureau of Economic Analysis. They can be downloaded from \url{https://apps.bea.gov/scb/pdf/2010/10%20October/1010_services_tables.pdf}. The relevant data are in Table 4.1 on p.~42.
+\end{enumerate}
+
+
+
+\section{Dataset list} \label{sec:datafiles}
+
+This section lists the data files provided as part of the package (in the folder \texttt{Data}) and explains what they contain. If applicable, it explains how the files were constructed from the raw data obtained from the sources described above.
+
+\begin{description}
+  \item[\texttt{USPTO_fees.xlsx}:] Contains the data from (\ref{s:fees}), complemented with data from (\ref{s:ptoapps}) used for weighting. The numbers are converted to 2018 dollars using GDP deflator data from (\ref{s:gdpdeflator}).
+  \item[\texttt{USPTO_budget.xlsx}:] Contains the data from (\ref{s:budget}) and (\ref{s:exsal}). The numbers are converted to 2018 dollars using GDP deflator data from (\ref{s:gdpdeflator}).
+  \item[\texttt{number_of_patents_3and4digits.csv}:] Contains the data from (\ref{s:fc}a).
+  \item[\texttt{fractional count.csv}:] Contains the data from (\ref{s:fc}b).
+  \item[\texttt{litigation_costs(AIPLA_survey_data).xlsx}]: Contains the data from (\ref{s:aipla}). The numbers are converted to 2018 dollars using GDP deflator data from (\ref{s:gdpdeflator}).
+  \item[\texttt{Patent Propensity.csv}:] Contains sector-specific overall patent propensities based on the data from (\ref{s:propensity}). To construct these numbers, we weight the raw patent propensity for process and product innovations from \citet[Table A1, p.~49]{CoNW00} by the percentage of R\&D time spent on each type of innovation, as reported in \citet[Table 1, p.~133]{ArK98}.
+  \item[\texttt{mansfield.xlsx}:] Contains the data from (\ref{s:mansfield}), complemented with data from (\ref{s:pa2011}).
+  \item[\texttt{naics5811.csv}:] Dataset from (\ref{s:ces}).
+  \item[\texttt{capbymeasure_table2.1.csv}:] Table 2.1 from (\ref{s:cap}).
+  \item[\texttt{capbymeasure_table4.1.csv}:] Table 4.1 from (\ref{s:cap}).
+  \item[\texttt{capbymeasure_table8.1.csv}:] Table 8.1 from (\ref{s:cap}).
+  \item[\texttt{ECN_2007_US_31SR12_with_ann.csv}:] Dataset from (\ref{s:conc}).
+  \item[\texttt{capacity_utilisation_monthly.txt}:] Dataset from (\ref{s:cumonth}).
+  \item[\texttt{capacity_utilisation.csv}:] Dataset from (\ref{s:cu}).
+  \item[\texttt{mfp_4digits.csv}:] Contains the MFP data in the worksheet ``Measures by industry'' from the 4-digit NAICS level data from (\ref{s:tfp}).
+  \item[\texttt{manual_assign_tfp_estimate.csv}:] Contains manually assigned TFP estimates for a selection of 6-digit NAICS codes.\footnote{Our TFP estimates are residuals of a regression of MFP on growth in capacity utilitization. For cases where this does not yield a positive estimate, we manually assign a value according to the following procedure: if they exist and are positive, use the average of 6-digit estimates for the same 5-digit naics code. Otherwise, use the 3-digit average MFP ($1/20 \times \log(\textit{mfp}_{2007}/\textit{mfp}_{1987})$) from the 3-digit NAICS level data from (\ref{s:tfp}).}
+  \item[\texttt{R\&D computations.xlsx}:] Contains the three tables of data from (\ref{s:rd}) in worksheets ``1999-2003'', ``2004'', and ``Constant 2000 dollars''. In addition, it contains the worksheet ``Computations,'' which uses the data in the other worksheets to compute the numbers in the file \texttt{R\&D data.csv} (see below).
+  \item[\texttt{R\&D data.csv}:] Contains average R\&D spending over the 1999-2004 period by 3-digit NAICS sector, computed in column Q of worksheet ``Computations'' in \texttt{R\&D computations.xlsx}.
+  \item[\texttt{pat76_06_assg.dta}:] Contains the data from (\ref{s:nberpat}).
+  \item[\texttt{N_f.csv}:] Contains data on average yearly patent applications by technology field over the 1999-2004 period, computed based on the data from (\ref{s:nberpat}). We provide a Stata do file and an excel file to reproduce the numbers in the file from the raw data; see Section \ref{sec:programs}.
+  \item[\texttt{mapping rule.csv}:] File from (\ref{s:corrpto}a) containing the correspondence between NAICS codes and the sequence numbers used in the patent count data from (\ref{s:fc}). Each sequence number corresponds to exactly one NAICS code.
+  \item[\texttt{naics_co14.csv}:] File from (\ref{s:corrpto}b) containing the correspondence between sequence numbers and technology classes. One sequence number can correspond to multiple technology classes.
+  \item[\texttt{classcat.csv}:] File from (\ref{s:corrnber}) containing the correspondence between technology classes and technology fields (the variable `CAT'). Each class corresponds to one technology field but one technology field contains many classes.
+  \item[\texttt{old to new naics.csv}:] File used to map the level of NAICS aggregation used by the USPTO to the level we use. Ours is the same as the USPTO aggregation except that sector 325 is separated into just 3254 and others (3251, 3252, 3253, 3255, 3256, and 3259 combined).
+  \item[\texttt{GDPDEF.xls}:] Dataset from (\ref{s:gdpdeflator}).
+  \item[\texttt{real interest rates.xls}:] Dataset from (\ref{s:int}).
+\end{description}
+
+
+\section{Computational requirements}
+
+\subsection{Software requirements}
+
+\begin{itemize}
+\item Stata (code was last run with version 14)
+\item Python 3.7.3
+  \begin{itemize}
+  \item \texttt{numpy} 1.18.1
+  \item \texttt{scipy} 1.4.1
+  \item \texttt{matplotlib} 3.1.3
+  \item \texttt{pandas} 1.0.3
+  \item \texttt{itertools}
+  \item \texttt{os}
+  \item \texttt{sklearn.linear_model}
+  \end{itemize}
+  The file ``\texttt{/programs/requirements.txt}'' lists these dependencies;
+    please run ``\texttt{pip install -r requirements.txt}'' as the
+    first step.
+\item Microsoft Excel 2016
+\end{itemize}
+
+\subsection{System and memory requirements}
+
+The code was last run on a Dell laptop with an Intel 4-core i7-8650U CPU, 16GB of RAM, and with Microsoft Windows 10 Enterprise Version 10.0.19042. Runtime requirements are provided in Section \ref{sec:programs}.
+
+\section{Description of programs} \label{sec:programs}
+
+\begin{itemize}
+  \item Stata:
+  \begin{itemize}
+    \item \texttt{litigation_cost_parameters.do} is a do file that runs the regression using the data from (\ref{s:aipla}) on which the litigation cost parameters ($l_0$ and $l_1$) are based.
+    \item \texttt{Computation of N_f.do} is a do file that counts the number of patents assigned to U.S.~corporations, by technology field, in the data from (\ref{s:nberpat}).
+  \end{itemize}
+  \item Python:
+  \begin{itemize}
+    \item \texttt{general.py} and \texttt{mod1_fcts.py} define the classes and functions on which the code for parameter assignment and construction of calibration targets relies.
+    \item \texttt{parameter_values.py} runs the data analysis and computations that generate (a subset of) the assigned parameters and calibration targets. The output is written to \texttt{params_targets.csv}. Runtime: 1 minute.
+    \item \texttt{estimation_and_counterfactuals.py} runs the baseline estimation whose results are in Table 2, Panel A and the counterfactuals which are in Tables 3 and 4. It also runs the external validation tests reported in Section 4.4. All of the output is written to \texttt{baseline_and_counterfactuals.csv}. Runtime: about 60 minutes.
+    \item The programs in the \texttt{Robustness} folder (\texttt{robustness_lr238.py}, \texttt{robustness_pakes.py}, and \texttt{robustness_frechet.py}) generate the output for the robustness checks in Table 2, Panel B. Their output is written to homonymous csv files. Runtime: each about 2 minutes.
+    \item The programs in the \texttt{Figures} folder (\texttt{figure2.py}, \texttt{figure3.py}, \texttt{figure4.py}, and \texttt{figure5.py}) generate the figures (for both main text and online appendix). The code in these programs relies on the program \texttt{class_definitions.py}, also in the \texttt{Figures} folder, which defines various classes and functions. Runtime: Figure 2 -- about 80 minutes, Figures 3-5 -- less than 1 minute each. Output files: \texttt{W_contours.png} (Figure 2), \texttt{growthrates.png} (Figure 3), \texttt{profitfuncs.png} (Figure 4), \texttt{lambdalow.png} (Figure 5).
+  \end{itemize}
+  \item Excel:
+  \begin{itemize}
+    \item \texttt{Tables.xlsx} uses the datafiles and the output generated by the Python code to produce the tables and other numbers reported in the paper.
+    \item \texttt{Computation of N_f.xlsx} uses the output generated by the Stata do file \texttt{Computation of N_f.do} to compute the numbers in \texttt{Data/N_f.csv}.
+  \end{itemize}
+\end{itemize}
+
+\section{Instructions to replicators}
+
+Set up the environment as explained above. Store the data files contained in the replication package (described in Section \ref{sec:datafiles}) in a subfolder \texttt{Data}. Then:
+\begin{enumerate}
+  \item Run the Stata do files \texttt{litigation_cost_parameters.do} and \texttt{Computation of N_f.do}.
+  \item Run the Python program \texttt{parameter_values.py}.
+  \item Run the Python program \texttt{estimation_and_counterfactuals.py}.
+  \item Run the three Python programs in the subfolder \texttt{Robustness}.
+  \item Run the four Python programs in the subfolder \texttt{Figures}.
+  \end{enumerate}
+The order of execution does not matter. (Although the first two steps serve as inputs for the last three steps, and step 3 serves as input for step 5, the relevant output has been copied to the program files that use them so that each can be run independently.)
+
+Once all the output files have been generated, open \texttt{Tables.xlsx} with Microsoft Excel. In the pop-up window that asks about links, click ``Update'', then click ``Edit links...'' Select all the source files in the list, then click ``Open sources.''
+
+\pagebreak
+
+\section{List of tables and figures}
+
+For all tables and figures, as well as for numbers reported elsewhere in the text, we indicate the program that generates them and the output file to which they are written. In the last column, we indicate in which worksheet of the file \texttt{Tables.xlsx} the relevant exhibit is generated (if applicable).
+
+\begin{table}[htp!]
+  \centering
+  \begin{footnotesize}
+    \setlength{\extrarowheight}{3pt}
+    \begin{tabular}{>{\raggedright}p{0.25\textwidth}>{\raggedright}p{0.22\textwidth}>{\raggedright}p{0.22\textwidth}l}
+    \toprule
+    \textbf{Exhibit} & \textbf{Program} & \textbf{Output file} & \textbf{\texttt{Tables.xlsx} sheet} \\
+    \midrule
+    \multicolumn{4}{l}{\sc{Table 1}} \\
+    \multicolumn{4}{l}{Assigned parameters} \\
+  $a,c$ & \texttt{parameter_values.py} & \texttt{params_targets.csv} &  \multirow{5}{*}{Worksheet ``Table 1''} \\
+  $T$ & Statutory patent life & & \\
+  $r, b$ & \texttt{Tables.xlsx} & & \\
+  $l_0, l_1$ & \texttt{litigation_cost_parameters.do} & Regression output: $\qquad l_0=$ constant, $\qquad \qquad l_1=$ coefficient on \texttt{value at stake} & \\
+  $\phi_A, \phi_P$ & \texttt{USPTO_fees.xlsx} & & \\
+  \multicolumn{4}{l}{Empirical targets} \\
+  $\textit{GR}, \textit{LR}, \textit{VR}$ & \multicolumn{3}{l}{Set based on external information (see online Appendix G)} \\
+  $\textit{RPI}, \textit{TFPI}$ & \texttt{parameter_values.py} & \texttt{params_targets.csv} &  \multirow{3}{*}{Worksheet ``Table 1''} \\
+  $B$ & \texttt{USPTO_budget.xlsx} & & \\
+  $E$ & \texttt{Tables.xlsx} & & \\\midrule
+  \multicolumn{4}{l}{\sc{Table 2}} \\
+  Panel A. Baseline: estimates and welfare decomposition &  \texttt{estimation_and_counterfactuals.py} & \texttt{baseline_and_counterfactuals.csv} & \multirow{4}{*}{Worksheet ``Table 2''} \\
+  Panel B. Robustness tests & \texttt{robustness_lr238.py}, \texttt{robustness_pakes.py}, \texttt{robustness_frechet.py} & \texttt{robustness_lr238.csv}, \texttt{robustness_pakes.csv}, \texttt{robustness_frechet.csv} &  \\
+  \midrule
+  \sc{Table 3} & \texttt{estimation_and_counterfactuals.py} & \texttt{baseline_and_counterfactuals.csv} & Worksheet ``Tables 3 and 4'' \\
+  \midrule
+  \sc{Table 4} & \texttt{estimation_and_counterfactuals.py} & \texttt{baseline_and_counterfactuals.csv} & Worksheet ``Tables 3 and 4'' \\
+  \midrule
+  \multicolumn{4}{l}{\sc{Numbers reported elsewhere}} \\
+  Section 1: Optimal fees over current fees & \texttt{estimation_and_counterfactuals.py} & \texttt{baseline_and_counterfactuals.csv} & \multirow{16}{0.2\textwidth}{Worksheet ``Numbers reported elsewhere''} \\
+  Section 1: Share of low-type patents exposed to challenges & \texttt{estimation_and_counterfactuals.py} & \texttt{baseline_and_counterfactuals.csv} &  \\
+  Section 4.3: Ratio of 75th to 25th percentile of s & \texttt{estimation_and_counterfactuals.py} & \texttt{baseline_and_counterfactuals.csv} & \\
+  Section 4.3: Share of patents below the median value estimated by \citet{Be08} & \texttt{estimation_and_counterfactuals.py} & \texttt{baseline_and_counterfactuals.csv} & \\
+  Section 4.3: Gross welfare from high-type innovation over total gross welfare & \texttt{estimation_and_counterfactuals.py} & \texttt{baseline_and_counterfactuals.csv} & \\
+  Section 4.4: Aggregate patent propensity (empirical) & \texttt{Tables.xlsx} &  &  \\
+  \multicolumn{4}{l}{Section 4.4: Share of high-type inventions} \\
+  Simulated & \texttt{estimation_and_counterfactuals.py} & \texttt{baseline_and_counterfactuals.csv} &  \\
+  \midrule
+  \multicolumn{4}{l}{\textit{Continued on next page}} \\
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+\begin{table}[tbp]
+  \centering
+  \begin{footnotesize}
+    \setlength{\extrarowheight}{3pt}
+    \begin{tabular}{>{\raggedright}p{0.3\textwidth}>{\raggedright}p{0.2\textwidth}>{\raggedright}p{0.2\textwidth}l}
+    \toprule
+    \textbf{Exhibit} & \textbf{Program} & \textbf{Output file} & \textbf{\texttt{Tables.xlsx} sheet} \\
+  \midrule
+  \multicolumn{4}{l}{\sc{Numbers reported elsewhere (continued)}} \\
+  Empirical, unweighted average and patent-weighted average & \multirow{2}{*}{\texttt{mansfield.xlsx}} &  &  \\
+\multicolumn{4}{l}{Section 4.4: Elasticity of patent applications to fees} \\
+  Simulated & \texttt{estimation_and_counterfactuals.py} & \texttt{baseline_and_counterfactuals.csv} & \multirow{9}{0.2\textwidth}{Worksheet ``Numbers reported elsewhere''} \\
+  Empirical & External estimates & &  \\
+  \multicolumn{4}{l}{Section 4.4: Elasticity of patent grants to R\&D} \\
+  Simulated & \texttt{estimation_and_counterfactuals.py} & \texttt{baseline_and_counterfactuals.csv} &  \\
+  Empirical & External estimates & &  \\
+  \multicolumn{4}{l}{Section 4.4: Cost saving from a registration system} \\
+  Simulated & \texttt{estimation_and_counterfactuals.py} & \texttt{baseline_and_counterfactuals.csv} &  \\
+  Empirical, examiner salaries saved & \multirow{4}{*}{\texttt{USPTO_budget.xlsx}} & &  \\
+  Empirical, search and examination fees as share of pre-grant fees & & &  \\
+  \multicolumn{4}{l}{Section 4.4: Ratio of licensing revenue to R\&D} \\
+  Simulated & \texttt{estimation_and_counterfactuals.py} & \texttt{baseline_and_counterfactuals.csv} &  \\
+  Empirical & \texttt{Tables.xlsx} & &  \\
+  Section 5.1: change in low-type applications when fees are frontloaded  & & &  \\
+Section 5.1: social value of the patent system under a registration system & & & \\
+Section 5.1: sum of pre-grant and post-grant fees & & & \\
+Section 5.1: share of high types among applicants under the optimal patent policy & \multirow{8}{0.2\textwidth}{\texttt{estimation_and_counterfactuals.py}} & \multirow{8}{0.2\textwidth}{\texttt{baseline_and_counterfactuals.csv}} & \multirow{8}{0.2\textwidth}{Worksheet ``Numbers reported elsewhere''} \\
+Section 5.1: examination cost per application under optimal policy over examination cost per application in baseline & & & \\
+Section 5.1: change in high-type applications under the optimal patent policy & & & \\
+Section 5.2: low-type deadweight loss avoided (DA) under PTAB (preponderance standard), as share of total DA & & & \\
+Section 5.2: low types that always preempt challenges under PTAB (preponderance standard) & & & \\
+Section 5.2: low-type DA under PTAB (preponderance standard) over low-type DA in baseline & & & \\
+\midrule
+\sc{Figure 1} & N/A & N/A &  \\
+\sc{Figure 2} & \texttt{figure2.py} & \texttt{W_contours.png} & \\
+\sc{Figure 3} & \texttt{figure3.py} & \texttt{growthrates.png} & \\
+\sc{Figure 4} & \texttt{figure4.py} & \texttt{profitfuncs.png} & \\
+\sc{Figure 5} & \texttt{figure5.py} & \texttt{lambdalow.png} & \\
+  \bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+
+\pagebreak
+
+\clearpage
+
+\bibliographystyle{../../chicago}
+\bibliography{../../flosrefs}
+
+\end{document}

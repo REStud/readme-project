@@ -1,0 +1,42 @@
+1               steady state
+1               federal taxes  
+0               deficit_financing
+0               nominal_bond_targeting   
+0               zlb_exper
+0.58            home_bias
+0.031          size region 1
+0              Endogenous R 
+0              normal_times
+1               Tax system -- 1 Linear 2: Benabou
+1               preferences  -- 1 : U= (1-h)^(1-theta)/(1-theta), 2: Constant El.
+0               imprecision_dividend
+0               initial_guess
+0               calculate counterfactuals 
+0               slow --- what is the pi_threshold 
+0               annual_calibration 
+0               mpc_calculation
+0.36            alpha --- capital share
+0.9816            bbeta --- discount factor
+0.005               beta_epsilon -- df heterogeneity
+0.025           delta --- depreciation rate
+0.0             k_min
+120              k_max
+2.5             k_scale
+0.955            rho --- persistence
+0.015            sigma_z2 --- variance of of z component (within)
+0.0           sigmaSS --- variance of of s component (states)
+0.99               theta --- labor supply elasticity 
+1               sigma --- RA parameter  
+8.3             ppsi--- disutility of labor 
+6               epsilon --- elasticity of substitution 
+-0.03           lump_tax 
+0.00            tau_1 ---  progressivity parameter 
+1.5             phi --- Taylor rule
+0.011            kappa --- borrowing wedge
+0.32              omega --- dividend fraction to mutual fund  
+0.25             tau_d --- dividend tax
+0.15             lambda -- fraction of firms adjusting
+2.40              B_hat -- targets a quarterly B/Y=4.8
+0.10             G --  targets a G/Y=0.20  
+0.0075             Impact shock for Region1 is 1%
+0.3636            Impact G2/G1 shock    
