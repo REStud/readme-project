@@ -55,6 +55,8 @@ def is_readme(file: str) -> bool:
     The string 'read' should be in the name of the file and the extension should be .md, .txt, .tex, .doc, .docx or .pdf
     """
     file = file.lower()
+    if "._" in file:
+        return False
     if "read" in file:
         if file.endswith(".md") or file.endswith(".txt") or file.endswith(".tex") or file.endswith(".doc") or file.endswith(".docx") or file.endswith(".pdf"):
             return True
