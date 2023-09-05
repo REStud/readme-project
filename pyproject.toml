@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "readme-project"
+version = "0.1.0"
+description = ""
+authors = ["Miklós Koren <koren@localhost>"]
+readme = "README.md"
+packages = [{include = "readme_project"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+tqdm = "^4.66.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
