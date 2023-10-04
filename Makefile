@@ -2,6 +2,10 @@
 # email: kiss.gergely.attila17@gmail.com
 # Date: 23 Aug 2023
 # 
+MSNUMBERS := $(wildcard data-raw/?????/*)
+readmes := $(patsubst data-raw/%,output/%,$(MSNUMBERS))
+
+all: $(foreach readme,$(readmes),$(basename $(readme)).md)
 data-raw/.timestamp: code/extract_readmes.py temp/github.csv
 	poetry run python $^ $(dir $@)
 	touch $@
@@ -24,3 +28,6 @@ output/%.md: data-raw/%.md
 output/%.md: data-raw/%.txt
 	mkdir -p $(dir $@)
 	pandoc $< -o $@
+data-raw/%.txt: data-raw/%.pdf code/pdftotxt.py
+	mkdir -p $(dir $@)
+	poetry run python code/pdftotxt.py $< $@
