@@ -1,0 +1,67 @@
+data_availability: &data_availability 
+  public:
+    type: boolean
+    required: True
+  provided:
+    type: boolean
+    required: True
+  url:
+    type: string
+  description:
+    type: string
+    required: True
+dataset: &dataset 
+  creator:
+    required: True 
+    type: string
+  title:
+    required: True 
+    type: string
+  year: 
+    type: integer
+  identifier: 
+    type: string
+  note: 
+    type: string
+  data_availability:
+    type: dict
+    schema: *data_availability
+author: &author
+  name:
+    required: True
+    type: string
+  email:
+    type: string
+software: &software
+  name:
+    required: True
+    type: string
+  version:
+    type: string
+  description:
+    type: string
+  url:
+    type: string
+  components:
+    type: list
+
+readme:
+  title:
+    required: True
+    type: string
+  manuscript:
+    type: integer
+    min: 20000
+    max: 99999
+  description:
+    type: string
+  authors:
+    type: list
+    empty: False
+    schema: *author
+  datasets:
+    type: list
+    schema: *dataset
+  software_requirements:
+    type: list
+    schema: *software

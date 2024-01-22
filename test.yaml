@@ -1,0 +1,30 @@
+title: Replication package for "A title"
+manuscript: 24567
+description: This package accompanies the manuscript "A title" by A. Author et al.
+authors:
+  - name: A. Author
+    email: author@foo.bar
+  - name: B. Author
+datasets:
+  - creator: A. Author
+    title: A dataset
+    year: 2019
+    identifier: 10.5281/zenodo.1234567
+    note: This dataset is used in the manuscript.
+    data_availability:
+      public: True
+      provided: True
+      url: https://zenodo.org/record/1234567
+      description: The dataset is available at Zenodo.
+software_requirements:
+  - name: Python
+    version: 3.7
+    description: The estimation code uses Python 3.7.
+    url: https://www.python.org/
+    components:
+      - name: NumPy
+        version: 1.16.4
+        url: https://www.numpy.org/
+      - name: SciPy
+        version: 1.3.0
+        url: https://www.scipy.org/
