@@ -1,0 +1,164 @@
+$schema: http://json-schema.org/draft-07/schema#
+type: object
+properties:
+  authors:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+        is_corresponding:
+          type: boolean
+      required:
+        - name
+        - is_corresponding
+    min_items: 1
+
+  title:
+    type: string
+    pattern: ^Replication Package for .+
+
+  overview:
+    type: string
+
+  data_availability_and_provenance_statements:
+    type: array
+    items:
+      type: object
+      properties:
+        dataset_name:
+          type: string
+        statement:
+          type: string
+      required:
+        - dataset_name
+        - statement
+    min_items: 1
+
+  datasets:
+    type: array
+    items:
+      type: object
+      properties:
+        canonical_name:
+          type: string
+        included_in_package:
+          type: boolean
+        reason_for_not_including:
+          type: string
+        publicly_available:
+          type: boolean
+        reason_for_not_public:
+          type: string
+        creating_organization:
+          type: string
+        official_name:
+          type: string
+        publication_date:
+          type: string
+          format: date
+        resource_locators:
+          type: array
+          items:
+            type: string
+        access_date:
+          type: string
+          format: date
+        access_conditions:
+          type: string
+        citation:
+          type: string
+      required:
+        - canonical_name
+        - included_in_package
+        - publicly_available
+        - creating_organization
+        - official_name
+        - publication_date
+        - access_conditions
+        - citation
+    min_items: 1
+
+  no_other_external_data_confirmation:
+    type: boolean
+
+  software_requirements:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        purpose:
+          type: string
+      required:
+        - name
+        - version
+        - purpose
+    min_items: 1
+
+  controlled_randomness:
+    type: string
+
+  hardware_requirements:
+    type: object
+    properties:
+      description:
+        type: string
+      memory_requirement:
+        type: number
+      time_requirement:
+        type: number
+    required:
+      - description
+      - memory_requirement
+      - time_requirement
+
+  program_description:
+    type: string
+
+  instructions_to_replicators:
+    type: string
+
+  reproducible_exhibits:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        location:
+          type: string
+      required:
+        - name
+        - type
+        - location
+    min_items: 1
+
+  references:
+    type: array
+    items:
+      type: object
+      properties:
+        citation:
+          type: string
+        doi:
+          type: string
+      required:
+        - citation
+
+required:
+  - authors
+  - title
+  - data_availability_and_provenance_statements
+  - datasets
+  - no_other_external_data_confirmation
+  - software_requirements
+  - hardware_requirements
+  - program_description
+  - reproducible_exhibits
