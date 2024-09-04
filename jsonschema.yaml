@@ -22,20 +22,6 @@ properties:
   overview:
     type: string
 
-  data_availability_and_provenance_statements:
-    type: array
-    items:
-      type: object
-      properties:
-        dataset_name:
-          type: string
-        statement:
-          type: string
-      required:
-        - dataset_name
-        - statement
-    min_items: 1
-
   datasets:
     type: array
     items:
@@ -69,6 +55,8 @@ properties:
           type: string
         citation:
           type: string
+        availability_statement:
+          type: string
       required:
         - canonical_name
         - included_in_package
@@ -78,6 +66,7 @@ properties:
         - publication_date
         - access_conditions
         - citation
+        - availability_statement
     min_items: 1
 
   no_other_external_data_confirmation:
@@ -155,7 +144,6 @@ properties:
 required:
   - authors
   - title
-  - data_availability_and_provenance_statements
   - datasets
   - no_other_external_data_confirmation
   - software_requirements
